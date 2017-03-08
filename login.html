@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Barker | Log In</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="/control/control.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	 <script src="/control/control.js"></script>
+	
+</head>
+<body style="background-color: grey">
+	<div class="navbar-fixed">
+	 	<nav>
+		<div class="nav-wrapper indigo lighten-2">
+			<a href="#" class="brand-logo" style="padding-left: 20px; color: #87421F; font-family: Lucida Console;">Barker</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li class="active"><a>Home</a></li>
+	    		<li style="padding-right: 30px"></li>
+	  		</ul>
+	  		<ul class="side-nav" id="mobile-demo">
+		        <li><a>Home</a></li>
+		        <li><a>About</a></li>
+		    </ul>
+		</div>
+	  	</nav>
+	</div>
+
+	<div class="container" ng-app="barkerApp" ng-controller="loginController">
+		<div class="row" style="padding:55px 0 20px 0">
+			<div class="col s7"> 
+	    		<h2 class="center-align">Welcome to Barker!</h2>
+	    		<h4 class="center-align">"Where everything barks aw aw!"</h4>
+	    		<h5 class="center-align">Keep in touch with your friends. Meet awesome people. Be always updated with everyone and with the world.</h5><br><br>
+                <h6 class="center-align">Angeles ~ Damiar ~ Tablang ~ Ruz</h6>
+                <h6 class="center-align">CMSC 100 EF-3L</h6>
+			</div>
+			<form class="col s4 offset-s1" ng-controller="loginController" style="padding:10px">
+				<div class="card grey lighten-3">
+		            <div style="padding:10px">
+			            <div id="myLogin" class="input-field col s11" action="/">
+		        			<input id="user_name" placeholder="Username" type="text" class="validate" ng-model="credentials.username">
+		          			<!-- <label for="user_name">Username</label> -->
+		          			<input id="password" placeholder="Password" type="password" class="validate" ng-model="credentials.password">
+					        <!-- <label for="password">Password</label> -->
+		          		</div>
+	          			<a class="btn waves-effect waves-light" ng-click="login()">Log in</a>
+		            </div>
+	          	</div>
+	        </form>
+	        <form class="col s4 offset-s1" >
+	          	<div class="card grey lighten-3">
+		            <div style="padding:10px">
+		            <p class="left-align"> New to Barker? Sign up! </p>
+		            <div class="divider"></div>
+			            <div class="input-field col s11">
+		        			<input id="full_name" placeholder="Full name" type="text" class="validate" ng-model="fullname">
+		          			<!-- <label for="user_name">Username</label> -->
+		          			<input id="new_username" placeholder="Username" type="text" class="validate" ng-model="newusername">
+					        <!-- <label for="password">Password</label> -->
+					        <input id="new_password" placeholder="Password" type="password" class="validate" ng-model="newpassword">
+					        <!-- <label for="password">Password</label> -->
+                            <input id="email" placeholder="Email" type="text" class="validate" ng-model="email">
+		          		</div>
+	          			<a href="#" class="btn waves-effect waves-light" ng-click="signUp()"> Sign up </a>
+		            </div>
+	          	</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html ng-app="barkerApp">
+    <head>
+	    <title>Barker | Home</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="/control/control.js"></script>
+        <style type="text/css">
+	        nav{
+		        background-color: rgb(120,120,200) !important;
+	        }
+
+	        html,body{
+		        height: 100%;
+		        font-family: Helvetica;
+		        background-color: rgb(30,30,30);
+	        }
+
+	        button{
+		        font-family: Arial;
+	        }
+
+	        li{
+		        list-style: none;
+	        }
+
+	        #account_info {
+		        background-color: rgb(230,230,230);
+		        border-radius: 5px;
+		        margin: 0px 0px 10px 0px;
+		        border-width: 0.1em;
+		        border-style: solid;
+		        border-color: rgb(200,200,200);
+		        list-style: none;
+		        margin: 0px;
+		        margin-top: 20px;
+		        padding: 20px;
+	        }
+
+	        #someStuff{
+		        background-color: rgb(230,230,230);
+		        border-radius: 5px;
+		        width: 100% ;
+		        border-width: 0.1em;
+		        border-style: solid;
+		        border-color: rgb(200,200,200);
+		        list-style: none;
+		        margin: 0px;
+		        margin-top: 20px;
+		        padding: 20px;
+	        }
+
+	        .barks{
+		        list-style: none;
+		        margin-bottom: -1%;
+	        }
+
+	        .navbar{
+		        height: 5% !important;
+	        }
+
+	        .col{
+		        background-color: green;
+	        }
+
+	        #navi_bar a{
+		        color: white !important;
+	        }
+
+	        button{
+		        background-color: inherit !important;
+		        color: rgb(100,100,100) !important;
+		        border: 0px !important;
+	        }
+
+	        button:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	        }
+
+	        #bark{
+		        border-radius: 5px;
+		        width: 100%;
+		        border-width: 0.1em;
+
+		        list-style: none;
+		        margin: 0px;
+		        margin-top: 0px;
+		        padding: 20px;
+                background-color: rgb(230,230,230);
+	        }
+
+	        #bark ul{
+		        padding: 0px;
+	        }
+
+	        #bark li{
+		        padding: 1%;
+	        }
+
+	        h4{
+		        color: grey;
+	        }
+
+	        .follower{
+		        margin: 7px;
+		        height: 200px !important;
+		        width: 250px !important;
+	        }
+
+	        #followers li{
+		        float: left;
+	        }
+
+	        #followers{
+		        width: 100%;
+	        }
+
+            .follButton{
+                float: right;
+                padding: 10px 20px;
+                border-radius: 12px;
+                background-color: #D3703E !important;
+            }
+
+            #title {
+               display: inline-block;
+               padding-left: 425px;
+               color: #87421F;
+               font-family: Lucida Console;
+               margin-top: 10px;
+            }
+
+            #logo {
+                width: 240px;
+                height: 240px;
+            }
+
+            #copyright {
+                color: #87421F;
+                text-align: center; 
+            }
+
+            #barkButton {
+                float: right;
+                margin-top: 5px;
+                margin-left: 10px;
+                padding: 10px 30px;
+                border-radius: 12px;
+                background-color: #D3703E !important;
+            }
+
+            #logout {
+                float: right;
+                margin-top: 5px;
+                margin-left: 30px;
+                padding: 10px 10px;
+                border-radius: 12px;
+                background-color: #D3703E !important;
+            }
+
+            #search {
+                float: right;
+                margin-top: 15px;
+                margin-left: 10px;
+                margin-right: -20px;
+                padding: 10px 10px;
+                border-radius: 12px;
+                background-color: #D3703E !important;
+            }
+
+            #searchInput{
+            	float: right;
+            	margin-left:150px;
+            	margin-top:10px;
+            	width:300px;
+            }
+        </style>
+    </head> 
+
+    <body ng-init="searchOthers()" ng-controller="barksController">
+        <div style="height: 7.5%; background-color:red;" ></div>
+
+        <nav class="navbar navbar-default navbar-fixed-top" >
+	        <!-- <ul class="nav-tabs-dropdown.btn.btn-block.btn-primary" id="navi_bar" style="margin-left: 30px !important;"> -->
+
+	        <div class="btn-group btn-group-lg" id="midButtons">
+		        <button type="button" class="btn btn-default" onclick="location.href='/barker'">Home</button>
+		        <button type="button" class="btn btn-default" onclick="location.href='/barker_profile'">Profile</button>
+                <h2 id="title">Barker</h2>
+                <a href="/logout"><button type="button" id="logout">Log out</button></a>
+                <button type="button" id="search" data-toggle="modal" data-target="#searchResult" ng-click="searchUser()"></button>
+                <input  id="searchInput" placeholder="Search" type="text" ng-model="search_key">
+
+	        <!-- </ul> -->
+        </nav>
+
+        <div ng-app="barkerApp"  class="container-fluid" id="innerView">
+        <div id="searchResult" class="modal fade" role="dialog">
+    	    <div class="modal-dialog">
+        		<div class="modal-content">
+            		<div class="modal-header">
+                		<button type="button" class="close" data-dismiss="modal">&times;</button>
+                		<h4 class="modal-title">Search Results</h4>
+              		</div>
+              		<div class="form-group">
+              			<ul>
+							<!--prints all matching database elements with the format-->
+							<li ng-repeat = "x in response">
+							<br><a href="/barker_profile/other/{{x.userId}}"> {{x.name}}</a> <br>
+							</li>
+						</ul>
+		      		</div>
+            	</div>
+			</div>
+          	</div>
+        <div ng-app="barkerApp"  class="container-fluid" id="innerView">
+	         <div class="col-sm-3" id="account_info" ng-init="mySelf()">
+		        <div class="panel panel-primary" >
+	              <div class="panel-heading">
+	              		<h3>{{self[0].name}}</h3>
+	              	</div>
+	              <div class="panel-body">
+                        @{{self[0].username}}<br><br>
+                        
+                  </div>
+	            </div>
+	        </div>
+	        <div class="col-sm-6" >
+                <br>
+		        <div class="container" id="bark" >
+                     <div class="form-group">
+                        <textarea class="form-control" rows="3" maxlength="140" id="bark" placeholder="Bark here!" ng-model="bark" style="background-color: white;"></textarea>
+                     </div>
+                     <button type="button" id="barkButton" ng-click="createBark()">Bark!</button><br><br><br>
+			        <ul  ng-repeat = "barks in results" >
+					        <div class="panel panel-info">
+				              	<div class="panel-heading">
+
+				              		<span><h4><a href="/barker_profile/other/{{barks.authorId}}" id="user_name">{{barks.name}}</a></h4></span> 
+							        <a href="/barker_profile/other" id="user_username">@{{barks.username}}</a> 
+							        ~ {{barks.year}}/{{barks.month}}/{{barks.day}}  <!-- name = user.name?? -->
+							
+						        </div>
+						        <div class="panel-body" style="word-wrap: break-word;">
+							        <span>{{barks.tweetContent}}</span>
+							        <br>
+							        <span class="icon"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#{{barks.tweetId}}comment"/><span class="glyphicon glyphicon-share-alt"></span></button></span>
+
+							        <span class="icon"><button type="button" ng-click="like(barks.tweetId);" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-heart"></span></button></span>
+										       
+									<span id="{{barks.tweetId}}likenum">{{barks.numberOfLikes}}</span>
+
+				              	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#{{barks.tweetId}}comments" ng-click="searchComment(barks.name,barks.tweetId)">Comments</button>
+						        </div>
+				              </div>
+
+				             	
+						        <div id="{{barks.tweetId}}comment" class="modal fade" role="dialog">
+						          <div class="modal-dialog">
+						            <div class="modal-content">
+						              <div class="modal-header">
+						                <button type="button" class="close" data-dismiss="modal">&times;</button>
+						                <h4 class="modal-title">Reply to @{{barks.username}}</h4>
+						              </div>
+						              <div class="form-group">
+								          <label for="comment">&nbsp Comment:</label>
+								          <textarea class="form-control" rows="3" id="commentz" maxlength="140" ng-model="commentContent"></textarea>
+								        </div>
+						              <div class="modal-footer">
+						                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addComment(commentContent, barks.tweetId)">Bark</button>
+						              </div>
+						            </div>
+						          </div>
+						        </div>
+
+						        <div id="{{barks.tweetId}}comments" class="modal fade" role="dialog" >
+						          <div class="modal-dialog">
+
+						            <!-- Modal content-->
+						            <div class="modal-content">						    
+						              <div class="modal-header" >
+						                
+						              	<ul ng-repeat="comment in comments">
+						              		<li>		
+						              		<div class="panel panel-danger">	
+						              			<div class="panel-heading">				      
+									                <span><a href="/barker_profile" id="user_name">{{comment.sssname}}</a></span> 
+												        <br><a href="/barker_profile" id="user_username">@{{comment.username}}</a> 
+												        ~ {{comment.year}}/{{comment.month}}/{{comment.day}}  <!-- name = user.name?? -->
+										        </div>
+										        <div class="panel-body">
+												        <br><span>{{comment.tweetContent}}</span>
+										        </div>
+										        <span class="icon"><button type="button" ng-click="like(comment.tweetId);" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-heart"></span></button></span>
+										       
+										        <span id="{{comment.tweetId}}likenum">{{comment.numberOfLikes}}</span>
+									        </div>	
+									        </li>
+								        </ul>
+								              <div class="modal-footer">
+						                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						              </div>
+						            </div>
+						          </div>
+						        </div>
+			            		</div>
+			            	</div>
+			            </li>
+			        </ul>
+		        </div>
+	        <div class="col-sm-3">
+		        <div class="container" id="someStuff">
+			        <img id="logo" src="/Photos/logo.png"/>	<br><br>
+                    <p id="copyright">Barker 2016</p> 
+		        </div>
+	        </div>
+        </div>
+    </body>
+</html>
